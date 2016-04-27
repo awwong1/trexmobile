@@ -74,6 +74,60 @@ app.get('/', function (req, res) {
   });
 });
 
+/**
+ * Submit some mail on root POST if captcha is filled out properly
+ */
+app.post('/', function (req, res) {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  var fromName = req.body.name || 'No Name';
+  var fromEmail = req.body.email || 'noreply@trexmobile.ca';
+  var fromMessage = req.body.message || 'No message';
+  var gCaptchaResponse = req.body['g-recaptcha-response'] || 'no_response';
+
+  verifyRecaptcha(gCaptchaResponse, ip, function (success) {
+    if (success) {
+      var fromField = fromName + ' <' + fromEmail + '>';
+      var toField = 'Taurik Taha <taurik@trexmobile.ca>';
+      // var bccField = 'Alexander Wong <admin@alexander-wong.com>';
+      var subject = 'T-Rex Mobile Contact Form';
+
+      var data = {
+        from: fromField,
+        to: toField,
+        // bcc: bccField,
+        subject: subject,
+        text: fromMessage,
+        html: fromMessage
+      };
+
+      mailgun.messages().send(data, function (err, body) {
+        //If there is an error, render the error page
+        if (err) {
+          res.render('index', {
+            contactForm: false,
+            contactMessage: 'Message could not be sent. Please contact using email or telephone?'
+          });
+        }
+        else {
+          res.render('index', {
+            contactForm: false,
+            contactMessage: 'Message has been sent successfully! Thank you!'
+          });
+        }
+      });
+    } else {
+      res.render('index', {
+        contactForm: true,
+        contactName: fromName,
+        contactEmail: fromEmail,
+        contactBodyMessage: fromMessage,
+        contactMessage: 'Message could not be sent. (ReCaptcha Verification Failed) ' +
+        'Please verify the reCaptcha.'
+      })
+    }
+  });
+});
+
 // serve all static files inside the client directory
 app.use(express.static('client'));
 

@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <!--
+  T-Rex Mobile by Alexander Wong
+  alexander-wong.com @awwong1
+  ----
 	Archetype by Pixelarity
 	pixelarity.com @pixelarity
 	License: pixelarity.com/license
@@ -14,6 +17,7 @@
   <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css"/><![endif]-->
   <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css"/><![endif]-->
   <link rel="stylesheet" href="assets/css/lightbox.min.css"/>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body class="landing">
 
@@ -153,21 +157,26 @@
   <div class="inner">
     <h2>Contact Us</h2>
     <p>Request a quote. Let us take your business to the next level with our custom LED display services.</p>
+    <div>{{contactMessage}}</div>
+    {{#contactForm}}
     <div id="contact-form-container">
       <form method="post" action="#contact">
         <div class="row uniform 50%">
           <div class="6u 12u$(xsmall)">
-            <input type="text" name="name" id="name" value="" placeholder="Name" required="required"/>
+            <input type="text" name="name" id="name" value="{{contactName}}" placeholder="Name" required="required"/>
           </div>
           <div class="6u$ 12u$(xsmall)">
-            <input type="email" name="email" id="email" value="" placeholder="Email" required="required"/>
+            <input type="email" name="email" id="email" value="{{contactEmail}}" placeholder="Email" required="required"/>
           </div>
         </div>
         <div class="row uniform 50%">
           <div style="width:100%">
             <textarea name="message" id="message" placeholder="Enter your message" rows="6"
-                      required="required"></textarea>
+                      required="required">{{contactBodyMessage}}</textarea>
           </div>
+        </div>
+        <div class="row uniform 50%">
+          <div class="g-recaptcha" data-sitekey="6LeKdR4TAAAAAFBuKNTGsfKzIwfN_7LAYsjURr_r"></div>
         </div>
         <div class="row uniform 50%">
           <div class="12u$">
@@ -179,7 +188,7 @@
         </div>
       </form>
     </div>
-    <?php endif; ?>
+    {{/contactForm}}
   </div>
 </section>
 
