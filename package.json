@@ -1,12 +1,19 @@
 {
-  "name": "openshift-cartridge-nodejs-template",
-  "version": "1.0.1",
-  "description": "Custom Node.js cartridge for OpenShift - sample application",
+  "name": "trexmobile-website",
+  "version": "0.0.0",
+  "description": "Node.js and Express application for TRex Mobile",
   "private": true,
   "main": "start.js",
   "scripts": {
     "start": "node --use_strict start.js"
   },
-  "author": "Ionut-Cristian Florescu <ionut.florescu@gmail.com>",
-  "license": "ISC"
+  "author": "Alexander Wong <admin@alexander-wong.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "helmet": "^1.3.0",
+    "mailgun-js": "^0.7.10",
+    "mustache-express": "^1.2.2"
+  }
 }
