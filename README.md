@@ -3,6 +3,7 @@ Client requested website for trexmobile.ca. Written in Node.js running express w
 
 Photos have been taken from Unsplash, extending off their Creative Commons Zero License.
 
+* [Openshift Url](http://trexmobile-trexmobile.193b.starter-ca-central-1.openshiftapps.com)
 * [Live Url](https://www.trexmobile.ca/)
 
 ## Environment Variables
