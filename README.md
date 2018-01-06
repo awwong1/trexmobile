@@ -1,4 +1,6 @@
 # trexmobile
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/awwong1/trexmobile.svg)](https://greenkeeper.io/)
 Client requested website for trexmobile.ca. Written in Node.js running express with Mailgun integration. Writen specifically for deployment on OpenShift's PaaS v3.
 
 Photos have been taken from Unsplash, extending off their Creative Commons Zero License.
